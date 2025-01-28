@@ -2,7 +2,7 @@ import os
 from dotenv import get_key
 from dotenv import set_key
 from unittest import TestCase
-from src.SecretsProvider import SecretsProvider
+from src.SecretsProvider.SecretsProvider import SecretsProvider
 
 class TestSecretsProvider(TestCase):
     def tearDown(self):
