@@ -20,26 +20,26 @@ class SecretsProvider:
         self._store_secret(secret_name, new_secret_value)
 
     def get_secret(self, secret_name: str) -> str:
-        """Retrieves secret from environment variables
-        looks for an environment variable environment_secret_prefix + secret_name
-        if this secret does not exist, it prompts the user to enter a secret and stores that to environment variables.
+        """Retrieves secret
+        Tries to retrieve a secret.
+        If this secret does not exist, it prompts the user to enter a secret and stores that.
         """
         secret_value = dotenv.get_key(self.env_path, secret_name)
         if not secret_value:
-            print(f"\nA secret with name {secret_name} is not yet stored in environment variables.")
+            print(f"\nA secret with name {secret_name} is not yet stored in {self.env_path}.")
             secret_value = self._request_secret_value()
             self._store_secret(secret_name, secret_value)
         return secret_value
 
     def remove_secret(self, secret_name: str) -> None:
-        """Remove the secret from environment variables"""
+        """Remove a secret"""
         dotenv.unset_key(self.env_path, secret_name)
 
     def print_secrets(self) -> None:
         """Prints secrets"""
-        secrets_from_environment_variables = dotenv.dotenv_values(self.env_path)
-        if secrets_from_environment_variables:
-            print(f"\nThere are {len(secrets_from_environment_variables)} secret(s) in environment variables: {secrets_from_environment_variables}")
+        stored_secrets = dotenv.dotenv_values(self.env_path)
+        if stored_secrets:
+            print(f"\nThere are {len(stored_secrets)} secret(s) stored: {stored_secrets}")
         else:
             print(f"\nNothing is stored in the file {self.env_path}")
 
@@ -49,6 +49,6 @@ class SecretsProvider:
     def _store_secret(self, secret_name: str, secret_value: str) -> None:
         if secret_value.strip():
             dotenv.set_key(self.env_path, secret_name, secret_value)
-            print(f"\nSecret has been stored as environment variable: {secret_name}.")
+            print(f"\nSecret has been stored: {secret_name}.")
         else:
             print("\nNo value entered for the secret. Not storing.")
