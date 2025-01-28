@@ -1,6 +1,6 @@
 [project]
 name = "SecretsProvider"
-version = "1.0.0"
+version = "2.0.0"
 authors = [
   { name="Koen Greuell", email="koen.greuell@lifewatch.eu" },
 ]
@@ -11,7 +11,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+license = "Apache-2.0"
 license-files = ["LICENCSE"]
+dependencies = [
+    "python-dotenv>=1.0.1"
+]
 
 [project.urls]
 Homepage = "https://github.com/NaaVRE/SecretsProvider.git"
