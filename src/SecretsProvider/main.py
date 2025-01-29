@@ -1,13 +1,12 @@
 import dotenv
 
 class SecretsProvider:
-    env_path = ".env"
-
-    def __init__(self, input_func=input):
+    def __init__(self, input_func=input, env_path=".env"):
         """Saves and retrieves secrets
         input_func controls how input from the user is asked when creating a new secret. By default, the user is asked for input.
         """
         self.get_input = input_func
+        self.env_path = env_path
 
     def set_secret(self, secret_name: str):
         """Saves a secret.
@@ -21,7 +20,6 @@ class SecretsProvider:
 
     def get_secret(self, secret_name: str) -> str:
         """Retrieves secret
-        Tries to retrieve a secret.
         If this secret does not exist, it prompts the user to enter a secret and stores that.
         """
         secret_value = dotenv.get_key(self.env_path, secret_name)
