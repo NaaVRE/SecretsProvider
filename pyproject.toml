@@ -1,6 +1,6 @@
 [project]
 name = "SecretsProvider"
-version = "2.0.1"
+version = "2.0.2"
 authors = [
   { name="Koen Greuell", email="koen.greuell@lifewatch.eu" },
 ]
@@ -14,7 +14,8 @@ classifiers = [
 license = "Apache-2.0"
 license-files = ["LICENCSE"]
 dependencies = [
-    "python-dotenv>=1.0.1"
+    "python-dotenv>=1.0.1",
+    "getpass"
 ]
 
 [project.urls]

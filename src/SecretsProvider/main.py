@@ -1,8 +1,9 @@
 import dotenv
+import getpass
 
 
 class SecretsProvider:
-    def __init__(self, input_func=input, env_path=".env"):
+    def __init__(self, input_func=getpass.getpass, env_path=".env"):
         """Saves and retrieves secrets
 
         Args:
